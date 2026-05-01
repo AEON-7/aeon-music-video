@@ -86,6 +86,25 @@ All optional. The CLI accepts everything via flags too — env vars just change 
 
 That's it. No HuggingFace token, no Civitai token, no SSH config, no ComfyUI server.
 
+## Updating an existing install
+
+```bash
+cd /path/to/aeon-music-video
+./sync.sh
+```
+
+Shows a diff preview of incoming changes, asks for confirmation, then pulls + refreshes Python deps. Flags:
+
+| Flag | What it does |
+|---|---|
+| `./sync.sh` | Interactive, shows diff |
+| `./sync.sh --dry-run` (or `-n`) | Show what would change without pulling |
+| `./sync.sh --yes` (or `-y`) | Non-interactive |
+| `./sync.sh --no-models` | (no-op for this repo — there are no models) |
+| `./sync.sh --help` | Print usage |
+
+Auto-stashes any local edits before pulling, then re-applies them. `.env` is gitignored.
+
 ## Project structure
 
 ```
