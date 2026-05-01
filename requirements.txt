@@ -1,0 +1,6 @@
+# aeon-music-video — Python deps. CPU only, no ML at runtime.
+
+librosa>=0.10.0     # beat / onset / RMS / spectral centroid analysis
+numpy>=1.24
+scipy>=1.10
+soundfile>=0.12.0   # WAV/FLAC IO
