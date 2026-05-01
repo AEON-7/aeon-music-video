@@ -50,7 +50,41 @@ See `SKILL.md` for the full guide: mood buckets, parameter tuning, companion wor
 - Source video clips (any format ffmpeg reads)
 - An audio track (FLAC / WAV / MP3)
 
-No ComfyUI required. No GPU required. Pure CPU pipeline.
+**No ComfyUI required. No GPU required. No model downloads. Pure CPU pipeline.**
+
+## Configuration
+
+Unlike its sibling repos in the AEON Media Production family, this tool has **no ComfyUI dependency** and almost no required configuration. The defaults work for most users.
+
+### Local-only execution
+
+Both scripts (`reactive_compositor.py`, `dmt_flash_editor.py`) run entirely on the local machine. They read input files (audio + video clips) from local paths, do their analysis with librosa, render with ffmpeg, and write the output mp4 to a local path. No network calls. No remote server.
+
+There is no "remote mode" because there's nothing to remote.
+
+### All environment variables
+
+All optional. The CLI accepts everything via flags too — env vars just change the *defaults*.
+
+| Variable | Default | What it is |
+|---|---|---|
+| `FFMPEG` | `ffmpeg` from PATH | Override path to ffmpeg binary if not on PATH |
+| `FFPROBE` | `ffprobe` from PATH | Override path to ffprobe binary if not on PATH |
+| `DEFAULT_FPS` | `24` | Default output framerate (CLI `--fps` overrides) |
+| `DEFAULT_WIDTH` / `DEFAULT_HEIGHT` | `832` / `480` | Default landscape resolution for `reactive_compositor.py` |
+| `DMT_WIDTH` / `DMT_HEIGHT` | `720` / `1280` | Default vertical resolution for `dmt_flash_editor.py` (TikTok / Reels / Shorts format) |
+| `DEFAULT_LUFS` | `-12.0` | Loudness target (LUFS) for the embedded audio. -12 is typical for EDM; -16 for podcast-style; -9 for max-loudness short-form |
+
+### How to install ffmpeg if missing
+
+| OS | Command |
+|---|---|
+| macOS | `brew install ffmpeg` |
+| Debian/Ubuntu | `sudo apt install ffmpeg` |
+| Arch | `sudo pacman -S ffmpeg` |
+| Windows | Download a static build from https://www.ffmpeg.org/download.html and add to PATH (or set `FFMPEG=C:/path/to/ffmpeg.exe` in `.env`) |
+
+That's it. No HuggingFace token, no Civitai token, no SSH config, no ComfyUI server.
 
 ## Project structure
 

@@ -2,6 +2,19 @@
 
 Instructions for AI agents that operate this tool.
 
+## Step 0 — This tool is local-only
+
+Unlike its sibling repos in AEON Media Production, this one has **no ComfyUI dependency** and **no remote-execution path**. Always invoke directly:
+
+```bash
+python scripts/reactive_compositor.py --audio song.flac --mood-clip ... -o out.mp4
+python scripts/dmt_flash_editor.py    --schedule schedule.json --audio song.flac -o out.mp4
+```
+
+No SSH commands, no HTTP calls, no model downloads. The user just needs ffmpeg on PATH and Python deps installed via `./setup.sh`.
+
+If the user is running their primary work on a remote GPU box, they likely have audio/video files there that need to come back to a local machine before this tool can use them — instruct them to `scp` or sync the files locally first, then run this tool against the local copies.
+
 ## When to invoke
 
 - User asks for an "audio-reactive music video" / "video that reacts to the song" / "beat-synced edit"
